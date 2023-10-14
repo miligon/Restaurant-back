@@ -27,9 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,7 +44,8 @@ INSTALLED_APPS = [
     # Custom apps
     'restaurants.apps.RestaurantsConfig',
     'reservations.apps.ReservationsConfig',
-
+    'djoser',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

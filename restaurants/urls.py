@@ -3,6 +3,6 @@ from rest_framework import routers
 from .viewsets import *
 
 route = routers.SimpleRouter()
-route.register('', RestarurantViewSet)
+route.register('', RestaurantViewSet)
 
 urlpatterns = route.urls   

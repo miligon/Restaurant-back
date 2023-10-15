@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import *
 
-class PurchasedSerializer(serializers.ModelSerializer):
+class PurchasedTicketsSerializer(serializers.ModelSerializer):
    class Meta:
         model = PurchasedTickets
         fields = '__all__'

@@ -9,5 +9,12 @@ class PurchasedTicketsSerializer(serializers.ModelSerializer):
 class TicketSerializer(serializers.ModelSerializer):
    class Meta:
         model = Tickets
-        fields = '__all__'
+        fields = (
+            'code',
+            'name',
+            'maxPurchaseCount',
+            'purchaseCount',
+            'soldout'
+            )
+
         

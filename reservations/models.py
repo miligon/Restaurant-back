@@ -34,7 +34,7 @@ class Tickets(models.Model):
 
 class PurchasedTickets(models.Model):
     id = models.AutoField(verbose_name="Purchase's ID", primary_key=True, auto_created=True)
-    ticket=models.ForeignKey(verbose_name="Ticket", to=Tickets, on_delete=models.PROTECT)
+    ticket=models.ForeignKey(verbose_name="Ticket", to=Tickets, on_delete=models.CASCADE)
     guestName=models.CharField(verbose_name="Guest's Name", max_length=100)
     quantity = models.PositiveIntegerField(verbose_name="Quantity purchased")
 

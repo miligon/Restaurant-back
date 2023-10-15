@@ -6,9 +6,15 @@ from .models import Tickets, PurchasedTickets
 def purchasedTicket_created(sender, instance, **kwargs):
     ticket = instance.ticket
     if ticket.isSoldout():
-        raise Exception(f"Ticket {ticket.code} is soldout!")
+        raise Exception("Ticket is soldout!")
     else:
-        ticket.purchaseCount += 1
+        if (ticket.getAvailable() - instance.quantity < 0):
+            raise Exception("Trying to purchase more tickets than available!")
+        ticket.purchaseCount += instance.quantity
         ticket.save()
         ticket.isSoldout()
         ('Ticket Sold!')
+
+@receiver(pre_save, sender=Tickets)
+def Ticket_save(sender, instance, **kwargs):
+    instance.isSoldout()

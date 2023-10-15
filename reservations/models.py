@@ -24,6 +24,9 @@ class Tickets(models.Model):
                 self.soldout = False
                 self.save()
             return False
+    
+    def getAvailable(self):
+        return (self.maxPurchaseCount - self.purchaseCount)
 
     class Meta:
         verbose_name="Ticket"
@@ -33,6 +36,7 @@ class PurchasedTickets(models.Model):
     id = models.AutoField(verbose_name="Purchase's ID", primary_key=True, auto_created=True)
     ticket=models.ForeignKey(verbose_name="Ticket", to=Tickets, on_delete=models.PROTECT)
     guestName=models.CharField(verbose_name="Guest's Name", max_length=100)
+    quantity = models.PositiveIntegerField(verbose_name="Quantity purchased")
 
     def __str__(self):
         return f'{self.guestName}({self.ticket})'

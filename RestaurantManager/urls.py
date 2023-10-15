@@ -23,6 +23,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/reservations/',  include('reservations.urls')),
-#    path('api/restaurants',  include('restaurants.urls'))
+    path('api/restaurants/',  include('restaurants.urls'))
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)

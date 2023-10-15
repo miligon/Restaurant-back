@@ -24,6 +24,6 @@ class TicketsTestCase(TestCase):
         
         self.ticket.save()
 
-    def test_restaurant_shows_name(self):
-        self.assertEqual(str(self.ticket), "10% OFF")
+    def test_restaurant_shows_name_and_code(self):
+        self.assertEqual(str(self.ticket), f"10% OFF({self.ticket.code})")
         

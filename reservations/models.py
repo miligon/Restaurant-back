@@ -12,6 +12,18 @@ class Tickets(models.Model):
     
     def __str__(self):
         return f'{self.name}({self.code})'
+    
+    def isSoldout(self):
+        if self.purchaseCount >= self.maxPurchaseCount:
+            if self.soldout == False:
+                self.soldout = True
+                self.save()
+            return True
+        else:
+            if self.soldout == True:
+                self.soldout = False
+                self.save()
+            return False
 
     class Meta:
         verbose_name="Ticket"

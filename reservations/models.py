@@ -1,8 +1,9 @@
 from django.db import models
 from restaurants.models import Restaurant
+import uuid
 
 class Tickets(models.Model):
-    code=models.UUIDField(verbose_name="Tickets' code", primary_key=True, auto_created=True)
+    code=models.UUIDField(verbose_name="Tickets' code", default=uuid.uuid4,  primary_key=True)
     restaurant=models.ForeignKey(verbose_name="Restaurant", to=Restaurant, on_delete=models.PROTECT)
     name=models.CharField(verbose_name="Description", max_length=50)
     maxPurchaseCount=models.PositiveIntegerField(verbose_name="Maximum purchase count number")
@@ -14,3 +15,4 @@ class Tickets(models.Model):
     class Meta:
         verbose_name="Ticket"
         verbose_name_plural="Tickets"
+

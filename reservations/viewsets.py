@@ -50,8 +50,7 @@ class TicketViewSet(viewsets.ModelViewSet):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
-class PurchaseViewSet(mixins.CreateModelMixin,
-                  viewsets.GenericViewSet):
+class PurchaseViewSet(mixins.CreateModelMixin,viewsets.GenericViewSet):
     queryset = PurchasedTickets.objects.all()
     serializer_class = PurchasedTicketsSerializer
 

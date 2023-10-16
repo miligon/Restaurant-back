@@ -45,17 +45,6 @@ REST_FRAMEWORK = {
     ),
 }
 
-if DEBUG == True:
-    SIMPLE_JWT = {
-        'ACCESS_TOKEN_LIFETIME': timedelta(minutes=360),
-        'REFRESH_TOKEN_LIFETIME': timedelta(minutes=1200),
-    }
-else:
-    SIMPLE_JWT = {
-        'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-        'REFRESH_TOKEN_LIFETIME': timedelta(minutes=360),
-    }
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -109,15 +98,7 @@ WSGI_APPLICATION = 'RestaurantManager.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'OPTIONS': {
-        # ...
-        'timeout': 60,
-        # ...
-    }
+    'default': env.db()
 }
 
 

@@ -15,8 +15,7 @@ class TicketUnauthenticatedSerializer(serializers.ModelSerializer):
         fields = (
             'code',
             'name',
-            'available',
-            'soldout'
+            'available'
             )
         
    def get_available(self, obj):

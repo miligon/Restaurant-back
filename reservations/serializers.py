@@ -1,38 +1,51 @@
+"""
+Module that holds serializers for app 'reservations'
+"""
 from rest_framework import serializers
-from .models import *
+from .models import PurchasedTickets, Tickets
 
-class PurchasedTicketsSerializer(serializers.ModelSerializer):  
-   class Meta:
+
+class PurchasedTicketsSerializer(serializers.ModelSerializer):
+    """ Serializer for PurchasedTickets model. """
+    class Meta:
         model = PurchasedTickets
         fields = '__all__'
 
-#Serializer of tickets for unauthenticated users
+
 class TicketUnauthenticatedSerializer(serializers.ModelSerializer):
-   available = serializers.SerializerMethodField()
-   class Meta:
+    """
+    Serializer for Tickets model intended to use with unauthorized users,
+    only shows: code, name and available fields.
+    """
+    available = serializers.SerializerMethodField()
+
+    class Meta:
         model = Tickets
-        read_only_fields = ('soldout',)
+        read_only_fields = ('available',)
         fields = (
             'code',
             'name',
             'available'
-            )
-        
-   def get_available(self, obj):
-       return obj.getAvailable()
-   
-#Serializer of tickets for authenticated users
+        )
+
+    def get_available(self, obj):
+        """ Returns the value of available tickets """
+        return obj.get_available()
+
+
 class TicketSerializer(serializers.ModelSerializer):
-   class Meta:
+    """
+    Serializer for Tickets model, intended to use with authorized users
+    for create/update tickets.
+    """
+    class Meta:
         model = Tickets
         read_only_fields = ('soldout',)
         fields = (
             'code',
             'restaurant',
             'name',
-            'maxPurchaseCount',
-            'purchaseCount',
+            'max_purchase_count',
+            'purchase_count',
             'soldout'
-            )
-
-        
+        )
